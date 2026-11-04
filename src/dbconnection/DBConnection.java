@@ -19,10 +19,10 @@ public class DBConnection {
 		
 		try {
 			conn = DriverManager.getConnection(url,user,pass);
-			System.out.println("연결성공");
+//			System.out.println("연결성공");
 			
 		}catch(Exception e) {
-			System.out.println("연결실패");
+//			System.out.println("연결실패");
 			e.printStackTrace();
 		}
 		

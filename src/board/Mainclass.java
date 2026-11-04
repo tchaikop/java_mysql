@@ -9,7 +9,7 @@ import java.util.Scanner;
 import dbconnection.DBConnection;
 
  
-
+//회원가입
 public class Mainclass {
 	
 	static Scanner sc = new Scanner(System.in);
@@ -514,7 +514,7 @@ public class Mainclass {
 	  
 	
 	  public static void main(String[] args) {
-//		    join();
+		    join();
 //		  memberDelete();
 //		  memberUpdate();
 //		  memberinfo();
@@ -523,31 +523,31 @@ public class Mainclass {
 //		  boardwriter();
 //		  boardlist();
 //		  boardDelete();
-		  contentView();
+//		  contentView();
+//		  
 		  
 		  
 		  
 		  
-		  
-		  while (true) {
-				 System.out.println("");
-				 System.out.println("=========== JAVA +MySQL 게시판");
-				 System.out.println("1. 회원가입");
-				 System.out.println("2. 로그인");
-				 System.out.println("3. 회원정보수정");
-				 System.out.println("4. 회원탈퇴");
-				 System.out.println("5. 게시글 목록");
-				 System.out.println("6. 게시글 내용 보기 ");
-				 System.out.println("==================");
-				 
-				 
-				 
-				 System.out.println("메뉴 선택");
-				 String menu = sc.nextLine();
-				 
-				 if(menu.equals("1")) {
-					 join();
-				 }
+//		  while (true) {
+//				 System.out.println("");
+//				 System.out.println("=========== JAVA +MySQL 게시판");
+//				 System.out.println("1. 회원가입");
+//				 System.out.println("2. 로그인");
+//				 System.out.println("3. 회원정보수정");
+//				 System.out.println("4. 회원탈퇴");
+//				 System.out.println("5. 게시글 목록");
+//				 System.out.println("6. 게시글 내용 보기 ");
+//				 System.out.println("==================");
+//				 
+//				 
+//				 
+//				 System.out.println("메뉴 선택");
+//				 String menu = sc.nextLine();
+//				 
+//				 if(menu.equals("1")) {
+//					 join();
+//				 }
 				 
 			 
 			 
@@ -556,4 +556,4 @@ public class Mainclass {
 		}
 	
 
-}
+
