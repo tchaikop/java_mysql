@@ -430,8 +430,60 @@ public class Mainclass {
 	  
    
  
+ //게시글 상세 보기 메소드
  
- 
+ public static void contentView() {
+	  
+	  System.out.println("조회할 게시글 내용 조회 번호");
+	 int bno = Integer.parseInt(sc.nextLine());  
+	  // bno가 문장ㄹ이므로 정수로 변환
+	 
+	
+	  String sql = "select * from member where userid = ?";
+	  
+	  
+	  try {
+		  Connection conn = DBConnection.getConnection();
+			 PreparedStatement pstmt = conn.prepareStatement(sql);
+			 
+			 pstmt.setInt(1, bno);
+			 
+			 ResultSet rs = pstmt.executeQuery();  // rs는 select 문의 답을 받는 그릇이다.
+			 
+			 if(rs.next()) {
+				 
+				
+				 
+			int bnum = rs.getInt("bno");
+			String btitle	= rs.getString("title");
+//			String mname = rs.getString("username");
+//			String mdate = rs.getString("regdate");
+			
+		
+			System.out.println("---------------------");
+			System.out.println(bno + "게시글 번호" + btitle + "게시글 제목");
+				 
+				 
+			 }else {
+				 System.out.println(" 게시글이 존재 하지 않는다");
+			 }
+			 
+			 
+			 rs.close(); // rs 닫기
+			 conn.close(); // connection 닫기
+			 
+			
+			 
+			 
+			 
+		  
+		  
+		
+	} catch (Exception e) {
+		System.out.println("게시글 조회실패");
+	}
+	  
+ }
 
  
  
@@ -456,7 +508,7 @@ public class Mainclass {
 //		  boardwriter();
 //		  boardlist();
 //		  boardDelete();
-		  
+		  contentView();
 		  
 		  
 		  
