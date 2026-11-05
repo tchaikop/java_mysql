@@ -310,7 +310,8 @@ public class Mainclass {
 	 System.out.println("게시글 내용:");
 	 String content = sc.nextLine();
 	 
-	 String sql = "insert into board(bno,title,content, writer) values(board_seq.nextval,?,?,?)";
+//	 String sql = "insert into board(bno,title,content, writer) values(board_seq.nextval,?,?,?)";
+	 String sql = "insert into board(title,content, writer) values(?,?,?)";
 	 
 	 try {
 		  
@@ -683,7 +684,6 @@ public class Mainclass {
 	  
 	
 	  public static void main(String[] args) {
-//		    join();
 //		  memberDelete();
 //		  memberUpdate();
 //		  memberinfo();
@@ -695,8 +695,8 @@ public class Mainclass {
 //		  contentView();
 //		    boardUpdate();
 //		    totalBoardcount();
-		  boardserch();
-		  
+//		  boardserch();
+		  join();
 		  
 		  
 		  
