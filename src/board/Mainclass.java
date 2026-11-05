@@ -619,13 +619,66 @@ public class Mainclass {
 		  
 	 }
 		 
-		 
+	//메뉴 12 로그인한 유저의 글 목록만 조회 출력(게시글 목록 보기에서 where loginid 개념)
+	 // 게시글 목록 보기를 -> 수정
 	 
-	
+	 
+	 
+	// 게시판 목록 조회 메서드에서  sql문에서 where writer = ?  
 	 
  
+	
+	 // 도전 문제* 메뉴 13: 게시판 글 검색 기능 추가 ->검색할 단어를 입력하세요
+	 //제목 또는 내용에 "거북이"단어가 포함된 글의 목록만 출력
 	  
-	  
+	 
+	 public static void boardserch() {
+		 
+		 System.out.println("검색 할 키워드 입력:");
+		 String keyword = sc.nextLine();
+		 
+		 String sql = "select * from board where title like ? or content like ?";
+		 
+		 
+		 try {
+			  Connection conn = DBConnection.getConnection();
+				 PreparedStatement pstmt = conn.prepareStatement(sql);
+				 
+				 pstmt.setString(1,"%"+ keyword + "%");
+				 pstmt.setString(2,"%"+ keyword + "%");
+				 
+				 ResultSet rs = pstmt.executeQuery();  // rs는 select 문의 답을 받는 그릇이다.
+				 
+				 while(rs.next()) {
+					 
+//					 System.out.println(" 회원은 존재합니다");
+					 
+				int bnum = rs.getInt("bno");
+				String btitle	= rs.getString("title");
+				String bcontent = rs.getString("content");
+				String bwriter = rs.getString("writer");
+				String bdate = rs.getString("regdate");
+				
+				
+				System.out.println("---------------------");
+				System.out.println("번호"+bnum );
+				System.out.println("제목"+btitle );
+				System.out.println("번호"+bcontent );
+				
+					 
+				
+				
+
+					 
+				 }
+				 System.out.println("---------------------");
+				 
+							
+		} catch (Exception e) {
+			System.out.println(" 조회실패");
+		}
+		 
+		}
 	  
 	
 	  public static void main(String[] args) {
@@ -640,8 +693,8 @@ public class Mainclass {
 //		  boardDelete();
 //		  contentView();
 //		    boardUpdate();
-		    totalBoardcount();
-//		  
+//		    totalBoardcount();
+		  boardserch();
 		  
 		  
 		  
