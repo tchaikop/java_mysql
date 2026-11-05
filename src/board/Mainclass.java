@@ -503,8 +503,123 @@ public class Mainclass {
  
  
 	 
+ 
+//메뉴 10. 게시글  수정 기능 (회원정보 수정 참조, delete 참조)
+// 로그인한 유저만 수정 가능
+//본인이 작성한 글만 수정 가능
+// 제목과 내용만 수정 가능
+// 수정하고 싶은 글 번호: 3
+
+//실패->존재하지 않는 글번호 이거나 본인이 작성하지 않은 글
+ 
+ 
+ public static void boardUpdate() {
 	 
-	
+	 if(loginid == null) {
+		 System.out.println("로그인 먼저 해주세요");
+		 login();
+	 }
+	 if(loginid == null) {
+		 return;
+	 }
+	  
+	 System.out.println("변경할 글 번호 입력");
+	  String bno = sc.nextLine();
+	  System.out.println("변경할 제목 입력");
+	  String title = sc.nextLine();
+	 
+	  
+	  String sql = "update board set title = ? where bno = ? and writer = ?";
+	  
+	  try {
+		  Connection conn = DBConnection.getConnection();
+			 PreparedStatement pstmt = conn.prepareStatement(sql);
+			 
+			 pstmt.setString(1, title);
+			 pstmt.setString(2, bno);
+			 pstmt.setString(3, loginid);
+			 
+			 int result = pstmt.executeUpdate();
+			 if(result ==1) {
+				 System.out.println("게시글 수정 성공");
+			 }else {
+				 System.out.println("수정하려는 글이 없다");
+			 }
+			 
+			 conn.close(); // connection 닫기
+		
+		
+	} catch (Exception e) {
+		System.out.println("수정 실패");
+	}
+	  
+	  
+ }
+//메뉴 11 전체 게시글의 갯수 출력 (count 집계 함수 사용)
+// "게시판 전체글의 갯수는 17개 입니다"
+ 
+ 
+	 public static void totalBoardcount() {
+		 
+		 if(loginid == null) {
+			 System.out.println("로그인 먼저 해주세요");
+			 login();
+		 }
+		 if(loginid == null) {
+			 return;
+		 }
+		 
+		
+		  String sql = "select count(*) from board ";
+		  
+		  
+		  try {
+			  Connection conn = DBConnection.getConnection();
+				 PreparedStatement pstmt = conn.prepareStatement(sql);
+				 
+				
+				 
+				 ResultSet rs = pstmt.executeQuery();  // rs는 select 문의 답을 받는 그릇이다.
+				 
+//				 int count  = 0;
+				 if(rs.next()) {
+					 
+				int count =	 rs.getInt("count(*)");
+				 System.out.println("총 게시글의 갯수:" + count);
+//					count++;
+					 
+//				int bnum = rs.getInt("bno");
+//				String btitle	= rs.getString("title");
+////				String mname = rs.getString("username");
+////				String mdate = rs.getString("regdate");
+//				
+			
+//				System.out.println("---------------------");
+//				System.out.println(bno + "게시글 번호" + btitle + "게시글 제목");
+					 
+					 
+				 }
+				 
+//				 System.out.println("총 게시글의 갯수:" + count);
+				 
+				 
+				 rs.close(); // rs 닫기
+				 conn.close(); // connection 닫기
+				 
+				
+				 
+				 
+				 
+			  
+			  
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		  
+	 }
+		 
+		 
 	 
 	
 	 
@@ -514,7 +629,7 @@ public class Mainclass {
 	  
 	
 	  public static void main(String[] args) {
-		    join();
+//		    join();
 //		  memberDelete();
 //		  memberUpdate();
 //		  memberinfo();
@@ -524,6 +639,8 @@ public class Mainclass {
 //		  boardlist();
 //		  boardDelete();
 //		  contentView();
+//		    boardUpdate();
+		    totalBoardcount();
 //		  
 		  
 		  
