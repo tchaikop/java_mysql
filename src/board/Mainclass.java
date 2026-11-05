@@ -1,6 +1,7 @@
 package board;
 
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -309,7 +310,7 @@ public class Mainclass {
 	 System.out.println("게시글 내용:");
 	 String content = sc.nextLine();
 	 
-	 String sql = "insert into board(title,content, writer) values(?,?,?)";
+	 String sql = "insert into board(bno,title,content, writer) values(board_seq.nextval,?,?,?)";
 	 
 	 try {
 		  
